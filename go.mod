@@ -1,4 +1,4 @@
-module rover
+module github.com/im2nguyen/rover
 
 go 1.21
 
@@ -11,7 +11,11 @@ require (
 	golang.org/x/net v0.0.0-20210924151903-3ad01bbaa167 // indirect
 )
 
-require github.com/hashicorp/go-tfe v0.20.0
+require (
+	github.com/caarlos0/env/v6 v6.10.1
+	github.com/hashicorp/go-tfe v0.20.0
+	github.com/spf13/cobra v1.7.0
+)
 
 require (
 	github.com/agext/levenshtein v1.2.2 // indirect
@@ -31,9 +35,11 @@ require (
 	github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f // indirect
 	github.com/hashicorp/hcl/v2 v2.0.0 // indirect
 	github.com/hashicorp/jsonapi v0.0.0-20210826224640-ee7dae0fb22d // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/zclconf/go-cty v1.9.1 // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.6 // indirect
