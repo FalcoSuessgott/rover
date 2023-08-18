@@ -54,6 +54,7 @@ type rover struct {
 	PlanPath         string
 	PlanJSONPath     string
 	WorkspaceName    string
+	TFCHostName      string
 	TFCOrgName       string
 	TFCWorkspaceName string
 	ShowSensitive    bool
@@ -66,7 +67,7 @@ type rover struct {
 }
 
 func main() {
-	var tfPath, workingDir, name, zipFileName, ipPort, planPath, planJSONPath, workspaceName, tfcOrgName, tfcWorkspaceName string
+	var tfPath, workingDir, name, zipFileName, ipPort, planPath, planJSONPath, workspaceName, tfcHostname, tfcOrgName, tfcWorkspaceName string
 	var standalone, genImage, showSensitive, getVersion, tfcNewRun bool
 	var tfVarsFiles, tfVars, tfBackendConfigs arrayFlags
 	flag.StringVar(&tfPath, "tfPath", "/bin/terraform", "Path to Terraform binary")
@@ -77,6 +78,7 @@ func main() {
 	flag.StringVar(&planPath, "planPath", "", "Plan file path")
 	flag.StringVar(&planJSONPath, "planJSONPath", "", "Plan JSON file path")
 	flag.StringVar(&workspaceName, "workspaceName", "", "Workspace name")
+	flag.StringVar(&tfcHostname, "tfeHostname", "app.terraform.io", "Terraform Cloud/Enterprise Hostname")
 	flag.StringVar(&tfcOrgName, "tfcOrg", "", "Terraform Cloud Organization name")
 	flag.StringVar(&tfcWorkspaceName, "tfcWorkspace", "", "Terraform Cloud Workspace name")
 	flag.BoolVar(&standalone, "standalone", false, "Generate standalone HTML files")
@@ -129,6 +131,7 @@ func main() {
 		TfVars:           parsedTfVars,
 		TfBackendConfigs: parsedTfBackendConfigs,
 		WorkspaceName:    workspaceName,
+		TFCHostName: tfcHostname,
 		TFCOrgName:       tfcOrgName,
 		TFCWorkspaceName: tfcWorkspaceName,
 		TFCNewRun:        tfcNewRun,
@@ -260,6 +263,7 @@ func (r *rover) getPlan() error {
 		}
 
 		config := &tfe.Config{
+			Address: r.TFCOrgName,
 			Token: tfcToken,
 		}
 
